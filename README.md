@@ -35,7 +35,7 @@ This library uses: Complementary, Triadic, and Tetradic
 
 # Screenshot
 
-[![](./screenshot.png)](https://strawstack.github.io/ColorWheel/)
+[![](./screenshot2.png)](https://strawstack.github.io/ColorWheel/)
 
 # Live Demo
 
