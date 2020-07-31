@@ -12,6 +12,7 @@ Starting from 12 hardcoded colours, this library generates 12288 colours (one fo
 <script>
     const cw = new ColorWheel();
     const colorList = cw.getColors(4);
+    colorList = colorList.map(c => cw.lighten(c, 0.3));
     console.log(colorList);
 </script>
 ```
@@ -22,6 +23,7 @@ Starting from 12 hardcoded colours, this library generates 12288 colours (one fo
 const ColorWheel = require("path/to/ColorWheel.js");
 const cw = new ColorWheel();
 const colorList = cw.getColors(4);
+colorList = colorList.map(c => cw.darken(c, 0.3));
 console.log(colorList);
 ```
 
@@ -38,6 +40,21 @@ This library uses: Complementary, Triadic, and Tetradic
 # Live Demo
 
 [View the Live Demo](https://strawstack.github.io/ColorWheel/)
+
+# Accessing the Wheel
+
+This is how you can get access to all the colors in the wheel and translate between angles and colors.
+
+```js
+const ColorWheel = require("path/to/ColorWheel.js");
+const cw = new ColorWheel();
+const all_colors = cw.colors; // List of 12k elements of type [angle, Color] where angle is 0 to 360
+
+const randomColor = cw.getColors(1)[0];
+const angle = cw.angleFromColor(randomColor);
+const newAngle = angle + 100;
+const color = cw.colorFromAngle(newAngle);
+```
 
 # Todo
 
