@@ -4,7 +4,32 @@ Starting from 12 hardcoded colours, this library generates 12288 colours (one fo
 
 # How to Use
 
+1. With a `script tag`
+
+```html
+<script src="path/to/ColorWheel.js"></script>
+
+<script>
+    const cw = new ColorWheel();
+    const colorList = cw.getColors(4);
+    console.log(colorList);
+</script>
+```
+
+2. With a `require statement`
+
+```js
+const ColorWheel = require("path/to/ColorWheel.js");
+const cw = new ColorWheel();
+const colorList = cw.getColors(4);
+console.log(colorList);
+```
+
 # How Nice Colours are Calculated
+
+This video shows how nice color combinations can be extracted from a color wheel: https://youtu.be/_2LLXnUdUIc?t=143
+
+This library uses: Complementary, Triadic, and Tetradic
 
 # Screenshot
 
