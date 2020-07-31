@@ -60,6 +60,17 @@ class ColorWheel {
     _radToDeg(rad) {
         return rad/Math.PI * 180;
     }
+    _scale(c) {
+        // Ensure largest channel is 255 at most
+        const m = Math.max(c.r, Math.max(c.g, c.b));
+        if (m === 0) return new Color(c.r, c.g, c.b);
+        const f = x => Math.floor(x);
+        return new Color(
+            f(c.r/m * 255),
+            f(c.g/m * 255),
+            f(c.b/m * 255)
+        );
+    }
 
     // Public methods
     colorFromAngle(deg) {
@@ -69,7 +80,7 @@ class ColorWheel {
         for (let color of this.colors) {
             let a = color[0];
             let c = color[1];
-            if (a >= deg) {
+            if (a >= _deg) {
                 return c;
             }
         }
@@ -83,12 +94,25 @@ class ColorWheel {
         // Return 'num' of colors that are evently spaced on the wheel
         // deg is optional start angle, otherwise random
         if (deg === undefined) {
-            deg = Math.floor(Math.random() * 360);
+            deg = Math.random() * 360;
         }
+
         let colors = [];
-        let spacing = 360/num;
-        for (let i = 0; i < num; i++) {
-            colors.push(this.colorFromAngle(deg + spacing * num));
+        if (num === 1) {
+            colors.push(this.colorFromAngle(deg));
+
+        } else if(num === 2 || num === 3 || num >= 5) {
+            let spacing = 360/num;
+            for (let i = 0; i < num; i++) {
+                colors.push(this.colorFromAngle(deg + spacing * i));
+            }
+        } else if (num === 4) {
+            let spacing = [0, 120, 180, 300];
+            for (let space of spacing) {
+                colors.push(
+                    this.colorFromAngle(deg + space)
+                );
+            }
         }
         return colors;
     }
@@ -104,11 +128,12 @@ class ColorWheel {
     lighten(color, percent) {
         // Increase values by percent
         let f = x => Math.ceil(x);
-        return new Color(
-            f(color.r * (1 + percent)),
-            f(color.g * (1 + percent)),
-            f(color.b * (1 + percent))
-        );
+        let m = Math.max(color.r, Math.max(color.g, color.b));
+        return this._scale(new Color(
+            f(color.r + m * percent),
+            f(color.g + m * percent),
+            f(color.b + m * percent)
+        ));
     }
 }
 

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const ColorWheel = require("./ColorWheel.js");
+const ColorWheel = require("../ColorWheel.js");
 
 function main() {
 
@@ -15,10 +15,10 @@ function main() {
     console.log(`_FF0040: ${_FF0040}\n`);
 
     console.log(`Number of Colors: ${cw.colors.length}`);
-    generateWheelPreview(cw);
+    generateWheelAndSetPreview(cw);
 }
 
-function generateWheelPreview(colorWheel) {
+function generateWheelAndSetPreview(colorWheel) {
     const INDEX_FILEPATH  = "template/index.html";
     const SCRIPT_FILEPATH = "template/main.js";
     const INDEX_NAME  = "index.html";
@@ -31,6 +31,17 @@ function generateWheelPreview(colorWheel) {
     // Insert color data into main
     let color_data = JSON.stringify(colorWheel.colors);
     main_data = main_data.replace("__COLOR_LIST_DATA__", color_data);
+
+    let color_sets = [];
+    for (let i = 1; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+            color_sets.push(
+                colorWheel.getColors(i)
+            );
+        }
+    }
+    let color_sets_json = JSON.stringify(color_sets);
+    main_data = main_data.replace("__COLOR_SETS__", color_sets_json);
 
     // Write files
     fs.writeFileSync(INDEX_NAME, index_data);
