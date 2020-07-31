@@ -8,11 +8,11 @@ Starting from 12 hardcoded colours, this library generates 12288 colours (one fo
 
 # Screenshot
 
-[![](./screenshot.png)](#)
+[![](./screenshot.png)](https://strawstack.github.io/ColorWheel/)
 
 # Live Demo
 
-[View the Live Demo](#)
+[View the Live Demo](https://strawstack.github.io/ColorWheel/)
 
 # Todo
 
