@@ -91,19 +91,22 @@ function displayShades() {
 }
 
 // Main
+const _CW = new ColorWheel();
 const CANVAS_ID = document.currentScript.dataset.canvas;
 main(CANVAS_ID);
 
 // Data
 function getColorList() {
-    /*
-    let DEBUG_DATA = [
-        [90, {hex: "#FF0000"}],  // Red
-        [210, {hex: "#0000FF"}], // Blue
-        [330, {hex: "#00FF00"}]  // Green
-    ]; */
-    return __COLOR_LIST_DATA__;
+    return _CW.colors;
 }
 function getColorSets() {
-    return __COLOR_SETS__;
+    let color_sets = [];
+    for (let i = 1; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+            color_sets.push(
+                _CW.getColors(i)
+            );
+        }
+    }
+    return color_sets;
 }
