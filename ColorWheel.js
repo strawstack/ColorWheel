@@ -88,7 +88,22 @@ class ColorWheel {
     }
     angleFromColor(color) {
         // Return angle from color on wheel
+        let c = color;
+        const SPAN = 120;
+        const T = 255;
+        if (c.r < c.g && c.r < c.b) { // GB
+            let blueBase = 210;
+            return blueBase + (T - c.b) / T * SPAN;
 
+        } else if (c.g < crg && c.g < c.b) { // RB
+            let redBase = 90;
+            return redBase + (T - c.r) / T * SPAN;
+
+        } else { // RG
+            let greenBase = 330;
+            let value = greenBase + (T - c.g) / T * SPAN;
+            return value % 360;
+        }
     }
     getColors(num, deg) {
         // Return 'num' of colors that are evently spaced on the wheel

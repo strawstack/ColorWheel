@@ -1,4 +1,4 @@
-const ColorWheel = require("ColorWheel.js");
+const ColorWheel = require("./ColorWheel.js");
 
 function main() {
 
