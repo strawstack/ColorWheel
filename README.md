@@ -1,6 +1,6 @@
 # ColorWheel
 
-Starting from 12 hardcoded colours, this library generates 12288 colours (one for every 1/3 deg on the color wheel). The user can then request random pairings of n colours that look nice together!
+Starting from 12 hardcoded colours, this library generates 12288 colours (one for every 1/3 deg on the color wheel). The user can then request random pairings of 1 to 5 colours that look nice together!
 
 # How to Use
 
